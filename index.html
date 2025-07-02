@@ -15,8 +15,8 @@
 
     body {
       font-family: 'Libre Baskerville', serif;
-      background-color: #fdf6ee; /* Cream */
-      color: #3b2f2f; /* Dark brown */
+      background-color: #fdf6ee;
+      color: #3b2f2f;
       line-height: 1.7;
       scroll-behavior: smooth;
     }
@@ -24,7 +24,7 @@
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      background-color: #1e1e1e; /* Almost black */
+      background-color: #1e1e1e;
       padding: 1rem;
       text-align: center;
       z-index: 1000;
@@ -36,16 +36,25 @@
       margin: 0 1.5rem;
       font-weight: bold;
       letter-spacing: 1px;
+      cursor: pointer;
     }
 
     nav a:hover {
-      color: #d1a46b; /* Light brown accent */
+      color: #d1a46b;
     }
 
     main {
       max-width: 850px;
       margin: 120px auto 3rem;
       padding: 0 1.5rem;
+    }
+
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
     }
 
     header {
@@ -98,19 +107,6 @@
       color: #6e5b4f;
     }
 
-    .fade {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeIn 0.8s ease-out forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1.4rem; }
@@ -121,24 +117,26 @@
 <body>
 
   <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#certifications">Certifications</a>
-    <a href="#contact">Contact</a>
+    <a onclick="showSection('about')">About</a>
+    <a onclick="showSection('skills')">Skills</a>
+    <a onclick="showSection('projects')">Projects</a>
+    <a onclick="showSection('certifications')">Certifications</a>
+    <a onclick="showSection('contact')">Contact</a>
   </nav>
 
   <main>
-    <header class="fade">
-      <img src="profile.jpg" alt="Sravani Peddi" class="profile-img" />
-      <h1>Sravani Peddi</h1>
-      <p>
-        Passionate about transforming raw data into powerful stories, I’m a Computer Science graduate who blends analytical thinking with creativity.  
-        I enjoy building smart, scalable data solutions and love the process of turning complex insights into something anyone can understand.
-      </p>
-    </header>
+    <section id="about" class="active">
+      <header>
+        <img src="profile.jpg" alt="Sravani Peddi" class="profile-img" />
+        <h1>Sravani Peddi</h1>
+        <p>
+          Passionate about transforming raw data into powerful stories, I’m a Computer Science graduate who blends analytical thinking with creativity.  
+          I enjoy building smart, scalable data solutions and love the process of turning complex insights into something anyone can understand.
+        </p>
+      </header>
+    </section>
 
-    <section id="skills" class="fade">
+    <section id="skills">
       <h2>Skills</h2>
       <ul>
         <li>Python, SQL, VBA, HTML, CSS</li>
@@ -150,32 +148,43 @@
       </ul>
     </section>
 
-    <section id="projects" class="fade">
-      <h2>Projects</h2>
+    <section id="projects">
+      <h2>🛠️ Projects That Represent Me</h2>
 
       <div>
-        <div class="project-title">Budget Tracker Web App</div>
+        <div class="project-title">📊 Budget Tracker Web Application</div>
         <p>
-          Developed a Flask and MySQL-based expense tracker with real-time visualizations using Matplotlib. Users can enter expenses, view category-based summaries, and explore spending habits through charts.
+          Designed and built a full-stack web app that helps users track their daily expenses, categorize their spending, and visualize patterns using interactive charts.
+          Integrated MySQL for data storage, Python for processing, and Matplotlib to generate real-time insights — all wrapped in a clean, responsive Flask interface.
         </p>
       </div>
 
       <div>
-        <div class="project-title">Wine Dataset Correlation Analyzer</div>
+        <div class="project-title">🍷 Wine Dataset Correlation Analyzer</div>
         <p>
-          Designed a Python tool to explore and visualize relationships among wine attributes like acidity, alcohol, and tannin using heatmaps and interactive filters.
+          Curious about how acidity, alcohol, and tannin interact in wines? I built a Python-based analyzer that uncovers surprising relationships in wine attributes using
+          correlation heatmaps and Seaborn visuals. Perfect for data geeks and wine lovers alike!
         </p>
       </div>
 
       <div>
-        <div class="project-title">Weather Data Analysis</div>
+        <div class="project-title">🌦️ Weather Data Analysis for Smart Farming</div>
         <p>
-          Conducted time-series analysis on urban heat patterns and created interactive Tableau dashboards used by local agriculture groups to optimize planting decisions.
+          Processed real-world meteorological data to detect climate anomalies that impact farming decisions. Developed a beautiful Tableau dashboard that tells a story
+          using temperature trends, rainfall shifts, and soil moisture predictions. Local growers used this to fine-tune planting seasons.
+        </p>
+      </div>
+
+      <div>
+        <div class="project-title">🧠 Fatigue Crack Growth Automation (LexTech Internship)</div>
+        <p>
+          Automated fatigue simulations using Python and COM integration with AFGROW. Built adaptive workflows based on simulation results, implemented ML-based anomaly detection,
+          and created dashboards to support fracture mechanics research with predictive insights.
         </p>
       </div>
     </section>
 
-    <section id="certifications" class="fade">
+    <section id="certifications">
       <h2>Certifications & Experience</h2>
       <ul>
         <li>Microsoft Certified Power BI Data Analyst Associate (2025)</li>
@@ -186,7 +195,7 @@
       </ul>
     </section>
 
-    <section id="contact" class="fade">
+    <section id="contact">
       <h2>Contact</h2>
       <p>Email: <a href="mailto:peddisravani087@gmail.com">peddisravani087@gmail.com</a></p>
       <p>LinkedIn: <a href="https://www.linkedin.com/in/sravanipeddi" target="_blank">linkedin.com/in/sravanipeddi</a></p>
@@ -198,17 +207,11 @@
   </footer>
 
   <script>
-    const sections = document.querySelectorAll('.fade');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    sections.forEach(sec => observer.observe(sec));
+    function showSection(id) {
+      const sections = document.querySelectorAll('main section');
+      sections.forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
   </script>
 
 </body>
